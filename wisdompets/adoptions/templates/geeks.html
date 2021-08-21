@@ -1,0 +1,65 @@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+    #header{
+        text-align: center;
+        background-color: coral;
+        color: white;
+        border: inset;
+        padding-left: 10px;
+        padding-right: 10px;
+}
+    }
+    #body{
+        background-color: rgb(16, 119, 16);
+        color: whitesmoke;
+    }
+    #newcard{
+        background-color: rgb(3, 47, 75);
+        color: whitesmoke;
+    }
+</style>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Professional Profile Dashboard</title>
+</head>
+<body>
+<div class="card" id='header'>
+<div class="card-header">
+    <h1 id='name'>Harris Minhas</h1>
+</div>
+</div>
+     
+ 
+<p> We have a total of {{ count }} projects so far.</p>
+ 
+<div class="card" id='body'>
+    <div class="card-body"></div>
+    <h4>List is </h4>
+    <ul>
+    {% for i in projects %}
+    <li>{{ i.name }}</li>
+    {% endfor %}
+</div>
+<div class="card" id='newcard' style="width: 18rem;">
+    <img class="card-img-top" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+</body>
+</html>
