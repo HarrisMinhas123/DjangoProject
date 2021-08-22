@@ -1,8 +1,13 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Feather icons library -->
+<script src="https://unpkg.com/feather-icons"></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -21,9 +26,32 @@
         color: whitesmoke;
     }
     #newcard{
-        background-color: rgb(3, 47, 75);
-        color: whitesmoke;
+        background-color: rgb(213, 224, 231);
+        color: rgb(10, 2, 2);
     }
+    .card-body{
+        margin: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    #name1{
+        font-size: medium;
+        font-style:normal;
+        font-weight: bold;
+    }
+    #facebook{
+        padding-right: 10px;
+        block-size: 20px;
+    }
+    #twitter{
+        padding-right: 10px;
+        block-size: 20px;
+    }
+    #linkedin{
+        padding-right: 10px;
+        block-size: 20px;
+    }
+    
 </style>
 
 
@@ -39,27 +67,24 @@
 <div class="card" id='header'>
 <div class="card-header">
     <h1 id='name'>Harris Minhas</h1>
+    <a class="btn btn-primary" href="https://twitter.com/minhas_harris" target="_blank"><i class="fab fa-twitter" id="twitter"></i>Twitter</a><i class="fab fa-facebook" id="facebook"></i><i class="fab fa-linkedin" id="linkedin"></i>
 </div>
 </div>
      
  
 <p> We have a total of {{ count }} projects so far.</p>
  
-<div class="card" id='body'>
-    <div class="card-body"></div>
-    <h4>List is </h4>
-    <ul>
     {% for i in projects %}
-    <li>{{ i.name }}</li>
-    {% endfor %}
-</div>
-<div class="card" id='newcard' style="width: 18rem;">
-    <img class="card-img-top" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="card" id='newcard' style="width: 18rem;">
+        <div class="card-body" id='cardbody'>
+        <i class="fab fa-github"></i>
+          <h5 class="card-title" id='name1'>{{ i.name }}</h5>
+          <p class="card-text">{{ i.description }}</p>
+          <a href="#" class="btn btn-primary">Details</a>
+        </div>
     </div>
-  </div>
+    {% endfor %}
+
+
 </body>
 </html>
