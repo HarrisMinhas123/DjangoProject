@@ -7,4 +7,6 @@ urlpatterns = [
     path('login/',LoginView.as_view(),name="login_url"),
     path('register/',views.registerView,name="register_url"),
     path('logout/',LogoutView.as_view(next_page='login_url'),name="logout"),
+    path('create/', views.create_product, name='create_product')
+
 ]

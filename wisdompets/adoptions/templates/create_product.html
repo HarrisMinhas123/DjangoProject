@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+{% block content %}
+<h1>Add a new product, {{user.username}}</h1>
+<form action="/add_product.html" method="post">
+    <input type="text">Name of product<required> <br>
+    <input type="text">Category of product<required>  <br>
+    <input type="text">Description of product<required> <br>
+
+    <i class="btn btn-primary">Create Product</i>
+</form>
+{% load static %}
+<script type="application/javascript">
+    $(document).ready(function () {
+    })
+</script>
+{% endblock %}
