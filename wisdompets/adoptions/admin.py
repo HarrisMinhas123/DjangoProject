@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Profile
+from .models import User
 
-# Register your models here.
-@admin.register(Profile)
+# Register your users here.
+@admin.register(User)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['name', 'species', 'cast', 'age', 'sex']
+    list_display = ['username', 'email', 'password']
     pass

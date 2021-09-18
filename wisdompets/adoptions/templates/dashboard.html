@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+{% block content %}
+<h1>Welcome, {{user.username}}</h1>
+<h4>You can navigate through the products here.</h4>
+<button class="btn btn-primary" id="button1">Add product</button>
+<a class="modal fade" id="create_product" role="button"></a>
+<table class="table table-striped">
+    <tr>
+        <th>Product Name</th>
+        <th>Category</th>
+        <th>Description</th>
+    </tr>
+    {% for product in products %}
+    <tr>
+        <td>product.name</td>
+        <td>product.category_name</td>
+        <td>product.description</td>
+    </tr>
+    {% endfor %}
+</table>
+<script type="application/javascript">
+    $(document).ready(function () {
+        $('#old_modal').modal('hide');
+        $('#button1').on('click', function () {
+            $("#create-product").modalForm({
+                formURL: "{% url 'create_book' %}"
+            });
+        })
+    })
+</script>
+{% endblock %}

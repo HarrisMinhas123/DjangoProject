@@ -1,26 +1,18 @@
 from typing import cast
 from django.db import models
 
-class Profile(models.Model):
-    SEX_CHOICES = [('M', 'Male'), ('F','Female')]
-    name= models.CharField(max_length=100)
-    submitter = models.CharField(max_length=100)
-    species = models.CharField(max_length=30)
-    cast = models.CharField(max_length=30)
-    submission_date = models.DateTimeField()
-    description = models.TextField(blank=True)
-    sex = models.CharField(max_length=1, choices=SEX_CHOICES, blank=True)
-    age = models.IntegerField(null=True)
-    vaccinations = models.ManyToManyField('Vaccine', blank=True)
+class User(models.Model):
+    username = models.CharField(max_length=255)
+    email = models.EmailField(max_length=100)
+    password = models.CharField(max_length=255)
 
+class category(models.Model):
+    name = models.CharField(max_length=255)
 
-class Vaccine(models.Model):
-    name = models.CharField(max_length=50)
+class products(models.Model):
+    product_name = models.CharField(max_length=255, primary_key=True)
+    tags = models.ManyToManyField(category, related_name="products")
+    category_name = models.CharField(max_length=255)
+    description = models.TextField(max_length=255)
+    django_admin_side = models.CharField(max_length=255, blank=True)
     
-    def __str__(self):
-        return self.name
-
-class Projects(models.Model):
-    name  = models.CharField(max_length=50)
-    tech_stack = models.TextField()
-    description = models.TextField()
