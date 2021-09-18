@@ -8,6 +8,6 @@ urlpatterns = [
     path('register/',views.registerView,name="register_url"),
     path('logout/',LogoutView.as_view(next_page='login_url'),name="logout"),
     path('create/', views.create_product, name='create_product'),
-    path('delete/', views.delete_product, name='delete_product')
+    path('delete/<str:product_name>', views.delete_product, name='delete_product')
 
 ]

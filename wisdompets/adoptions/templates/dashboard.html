@@ -15,7 +15,7 @@
         <td>{{ product.product_name }}</td>
         <td>{{ product.category_name}}</td>
         <td>{{ product.description }}</td>
-        <td><i class='btn btn-danger' >Delete</i></td>
+        <td><a href={% url 'delete_product' product.product_name  %}>Delete</a></td>
     </tr>
     {% endfor %}
 </table>
