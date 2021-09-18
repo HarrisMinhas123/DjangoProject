@@ -10,7 +10,7 @@ class category(models.Model):
     name = models.CharField(max_length=255)
 
 class products(models.Model):
-    product_name = models.CharField(max_length=255, primary_key=True)
+    product_name = models.CharField(max_length=255)
     tags = models.ManyToManyField(category, related_name="products")
     category_name = models.CharField(max_length=255)
     description = models.TextField(max_length=255)

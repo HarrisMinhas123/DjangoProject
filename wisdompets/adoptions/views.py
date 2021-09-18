@@ -3,7 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
-from .forms import ProductModelForm
+from django.http import HttpResponseRedirect
+from .forms import ProductModelForm, Add_Product
 from .models import products
 
 
@@ -23,6 +24,7 @@ def products_view(request):
 
 def indexView(request):
     return render(request,'index.html')
+    
 @login_required()
 def dashboardView(request):
     context ={
@@ -32,6 +34,7 @@ def dashboardView(request):
 
     }
     return render(request,'dashboard.html', context)
+
 def registerView(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
@@ -44,4 +47,43 @@ def registerView(request):
 
 def create_product(request):
     print("We here")
-    return render(request,'create_product.html')
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = Add_Product(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            product_name = form.cleaned_data['product_name']
+            category_name = form.cleaned_data['category_name']
+            description = form.cleaned_data['description']
+            products.objects.create(product_name=product_name, category_name = category_name, description=description,)
+            return redirect('dashboard')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = Add_Product()
+
+    return render(request, 'create_product.html', {'form': form})
+
+def delete_product(request, product_id):
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = Add_Product(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            product_name = form.cleaned_data['product_name']
+            category_name = form.cleaned_data['category_name']
+            description = form.cleaned_data['description']
+            products.objects.create(product_name=product_name, category_name = category_name, description=description,)
+            return redirect('dashboard')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = Add_Product()
+
+    return render(request, 'create_product.html', {'form': form})

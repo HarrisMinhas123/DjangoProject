@@ -8,12 +8,14 @@
         <th>Product Name</th>
         <th>Category</th>
         <th>Description</th>
+        <th>Options</th>
     </tr>
     {% for product in products %}
     <tr>
         <td>{{ product.product_name }}</td>
         <td>{{ product.category_name}}</td>
         <td>{{ product.description }}</td>
+        <td><i class='btn btn-danger' >Delete</i></td>
     </tr>
     {% endfor %}
 </table>
