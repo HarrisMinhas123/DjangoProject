@@ -3,6 +3,10 @@
 <h1>Welcome, {{user.username}}</h1>
 <h4>You can navigate through the products here.</h4>
 <a href="{% url 'create_product' %}">Add product</a>
+<form action="{% url 'search_product' %}" method="get">
+<input type="text" name="category_name" placeholder="Search by category"></input>
+<input type="submit" class="btn btn-success"></input>
+</form>
 <table class="table table-striped">
     <tr>
         <th>Product Name</th>
@@ -15,7 +19,7 @@
         <td>{{ product.product_name }}</td>
         <td>{{ product.category_name}}</td>
         <td>{{ product.description }}</td>
-        <td><a href={% url 'delete_product' product.product_name  %}>Delete</a></td>
+        <td><a class="btn btn-danger" href={% url 'delete_product' product.product_name  %}>Delete</a><a class="btn btn-warning" href={% url 'update_product' product.product_name  %}>Update</a></td>
     </tr>
     {% endfor %}
 </table>

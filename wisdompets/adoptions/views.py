@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
-from .forms import ProductModelForm, Add_Product
+from .forms import ProductModelForm, Add_Product, Update_Product
 from .models import products
 
 
@@ -85,3 +85,53 @@ def delete_product(request, product_name):
         return True
 
     return render(request, 'dashboard.html', context)
+
+def search_product(request):
+    try:
+        if request.method == 'GET':
+            category_name = request.GET['category_name']
+            print(category_name)
+            products_list = products.objects.filter(category_name=category_name).all()
+            return render(request, 'dashboard.html', {'products': products_list})
+    
+    except:
+        return False
+
+def update_product(request, product_name):
+    # dictionary for initial data with
+    # field names as keys
+    context ={}
+ 
+    # fetch the object related to passed id
+    obj = get_object_or_404(products, product_name=product_name)
+    # pass the object as instance in form
+    form = Update_Product(instance=obj)
+ 
+    # save the data from the form and
+    # redirect to detail_view
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect("/")
+    print(form)
+    # add form dictionary to context
+    context["form"] = form
+    context['product_name'] = product_name
+ 
+    return render(request, "update_product.html", context)
+
+def add_product(request, product_id): 
+    try:
+        if request.method == 'POST':
+            form = Update_Product(request.POST)
+            if form.is_valid():
+                product_name = form.cleaned_data["product_name"]
+                category_name = form.cleaned_data['category_name']
+                description = form.cleaned_data['description']
+                django_admin_side = form.cleaned_data['django_admin_side']
+
+            products_update = products.objects.filter(product_name=product_id).update(product_name=product_name, category_name=category_name, description=description, django_admin_side=django_admin_side)
+            products_list = products.objects.all()
+            return render(request, 'dashboard.html', {'products': products_list})
+    
+    except:
+        return False

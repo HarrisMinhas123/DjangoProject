@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+{% block content %}
+<h1>Add a new product, {{user.username}}</h1>
+<form action="{% url 'add_product' product_name %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+{% load static %}
+<script type="application/javascript">
+    $(document).ready(function () {
+    })
+</script>
+{% endblock %}
