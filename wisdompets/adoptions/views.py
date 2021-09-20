@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from .forms import ProductModelForm, Add_Product, Update_Product
 from .models import products
+from django.contrib.auth.hashers import make_password
 
 
 # Create your views here.
@@ -32,6 +33,8 @@ def dashboardView(request):
         "products" :products.objects.all()
 
     }
+    hashed_pass = make_password("Mashood")
+    print(hashed_pass)
     return render(request,'dashboard.html', context)
 
 def registerView(request):
