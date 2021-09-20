@@ -33,7 +33,7 @@ def dashboardView(request):
         "products" :products.objects.all()
 
     }
-    hashed_pass = make_password("Mashood")
+    hashed_pass = make_password("~]p`Xq7K5)d(Y#5J")
     print(hashed_pass)
     return render(request,'dashboard.html', context)
 
