@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
-from django.http import HttpResponseRedirect
-from .forms import ProductModelForm, Add_Product, Update_Product
+from django.http import HttpResponseRedirect, HttpResponse
+from .forms import Add_Product, Update_Product
 from .models import products
 from django.contrib.auth.hashers import make_password
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
@@ -138,3 +139,29 @@ def add_product(request, product_id):
     
     except:
         return False
+
+
+
+@csrf_exempt
+def create_products(request): 
+    try:
+        print("We are here",request.headers)
+    except:
+        print("Ni chalya")
+    return HttpResponse('<h1>Hello, cha;na pyapp</h1>')
+
+@csrf_exempt
+def create_order(request): 
+    try:
+        print("We are here",request.headers)
+    except:
+        print("Ni chLYE")
+    return HttpResponse('<h1>Hello, cha;na pya</h1>')
+
+@csrf_exempt
+def create_stores(request): 
+    try:
+        print("We are here",request.headers)
+    except:
+        print("Ni chLYE")
+    return HttpResponse('<h1>Hello, cha;na pya</h1>')
