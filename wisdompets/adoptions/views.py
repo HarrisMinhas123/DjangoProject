@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from .forms import Add_Product, Update_Product
 from .models import products
 from django.contrib.auth.hashers import make_password
+import json
 from django.views.decorators.csrf import csrf_exempt
 
 
@@ -144,24 +145,50 @@ def add_product(request, product_id):
 
 @csrf_exempt
 def create_products(request): 
-    try:
-        print("We are here",request.headers)
-    except:
-        print("Ni chalya")
-    return HttpResponse('<h1>Hello, cha;na pyapp</h1>')
+    holder = []
+    if request.method == 'POST':
+        
+        my_json = request.body.decode('utf8').replace("'", '"')
+        print(my_json)
+        print('- ' * 20)
+
+        # Load the JSON to a Python list & dump it back out as formatted JSON
+        data = json.loads(my_json)
+        s = json.dumps(data, indent=4, sort_keys=True)
+        print(s)
+        holder.append(s)
+        print(type(s))
+        
+    return JsonResponse(holder,safe=False)
 
 @csrf_exempt
 def create_order(request): 
-    try:
-        print("We are here",request.headers)
-    except:
-        print("Ni chLYE")
-    return HttpResponse('<h1>Hello, cha;na pya</h1>')
+    holder = []
+    if request.method == 'POST':
+        
+        my_json = request.body.decode('utf8').replace("'", '"')
+        print(my_json)
+        print('- ' * 20)
+
+        # Load the JSON to a Python list & dump it back out as formatted JSON
+        data = json.loads(my_json)
+        s = json.dumps(data, indent=4, sort_keys=True)
+        print(s)
+        holder.append(s)
+        print(type(s))
 
 @csrf_exempt
 def create_stores(request): 
-    try:
-        print("We are here",request.headers)
-    except:
-        print("Ni chLYE")
-    return HttpResponse('<h1>Hello, cha;na pya</h1>')
+    holder = []
+    if request.method == 'POST':
+        
+        my_json = request.body.decode('utf8').replace("'", '"')
+        print(my_json)
+        print('- ' * 20)
+
+        # Load the JSON to a Python list & dump it back out as formatted JSON
+        data = json.loads(my_json)
+        s = json.dumps(data, indent=4, sort_keys=True)
+        print(s)
+        holder.append(s)
+        print(type(s))
