@@ -157,9 +157,9 @@ def create_products(request):
         s = json.dumps(data, indent=4, sort_keys=True)
         print(s)
         holder.append(s)
-        print(type(s))
-        
-    return JsonResponse(holder,safe=False)
+        print(type(s))    
+        return HttpResponse(status=200)
+    
 
 @csrf_exempt
 def create_order(request): 
@@ -176,6 +176,7 @@ def create_order(request):
         print(s)
         holder.append(s)
         print(type(s))
+        return HttpResponse(status=200)
 
 @csrf_exempt
 def create_stores(request): 
@@ -183,12 +184,15 @@ def create_stores(request):
     if request.method == 'POST':
         
         my_json = request.body.decode('utf8').replace("'", '"')
-        print(my_json)
-        print('- ' * 20)
+        # print(my_json)
+        header = request.header
+        print(header)
+        # print('- ' * 20)
 
         # Load the JSON to a Python list & dump it back out as formatted JSON
         data = json.loads(my_json)
         s = json.dumps(data, indent=4, sort_keys=True)
-        print(s)
-        holder.append(s)
+        # print(s)
+        # holder.append(s)
         print(type(s))
+        return HttpResponse(status=200)
