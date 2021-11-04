@@ -149,15 +149,14 @@ def create_products(request):
     if request.method == 'POST':
         
         my_json = request.body.decode('utf8').replace("'", '"')
-        print(my_json)
-        print('- ' * 20)
-
+        # print(request.headers)
+        print(request.META)
         # Load the JSON to a Python list & dump it back out as formatted JSON
         data = json.loads(my_json)
         s = json.dumps(data, indent=4, sort_keys=True)
         print(s)
         holder.append(s)
-        print(type(s))    
+        print(type(s))  
         return HttpResponse(status=200)
     
 
@@ -167,8 +166,7 @@ def create_order(request):
     if request.method == 'POST':
         
         my_json = request.body.decode('utf8').replace("'", '"')
-        print(my_json)
-        print('- ' * 20)
+        print(request.headers)
 
         # Load the JSON to a Python list & dump it back out as formatted JSON
         data = json.loads(my_json)
@@ -185,7 +183,7 @@ def create_stores(request):
         
         my_json = request.body.decode('utf8').replace("'", '"')
         # print(my_json)
-        header = request.header
+        header = request.headers
         print(header)
         # print('- ' * 20)
 
@@ -195,4 +193,5 @@ def create_stores(request):
         # print(s)
         # holder.append(s)
         print(type(s))
+        print(s)
         return HttpResponse(status=200)
